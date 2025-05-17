@@ -2,7 +2,6 @@ agora_token_builder==1.0.0
 asgiref==3.4.1
 async-timeout==5.0.1
 certifi==2025.4.26
-channels==4.2.2
 channels_redis==4.2.1
 charset-normalizer==3.4.2
 Django==4.0.1
