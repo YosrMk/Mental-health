@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SereneMind | Mental Health Support</title>
+    <link rel="stylesheet" href="{% static 'css/web.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Serene<span>Mind</span></div>
+        <ul class="nav-links">
+            <li><a href="{% url 'te' %}">Home</a></li>
+            <li><a href="{% url 'res' %}">Resources</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+
+
+<div class="service-page" >
+    <div class="service-hero" style="background: linear-gradient(rgba(106, 140, 175, 0.9), rgba(154, 122, 160, 0.9)), url('https://images.unsplash.com/photo-1581093450025-4c8111a8366b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+        <div class="container" >
+            <h1>Support Groups</h1>
+            <p>Find community and understanding</p>
+        </div>
+    </div>
+    
+    <div class="service-content" style="margin-left:70px;" >
+        <div class="container">
+            <div class="service-details">
+                <h2>Join Our Supportive Community</h2>
+                <p>Connect with others who share similar experiences in a safe, moderated environment.</p>
+                
+                <div class="group-types">
+                    <div class="group-card">
+                        <h3>Anxiety & Depression</h3>
+                        <p>Weekly meetings for those managing mood disorders</p>
+                        <span>Every Tuesday, 6-7:30pm</span>
+                    </div>
+                    <div class="group-card">
+                        <h3>Grief & Loss</h3>
+                        <p>Support for those coping with bereavement</p>
+                        <span>Every Thursday, 5-6:30pm</span>
+                    </div>
+                    <div class="group-card">
+                        <h3>Parenting Support</h3>
+                        <p>For parents navigating mental health challenges</p>
+                        <span>Every Saturday, 10-11:30am</span>
+                    </div>
+                </div>
+                
+                <div class="testimonials">
+                    <h3>What Members Say</h3>
+                    <div class="testimonial">
+                        <p>"Finding this group helped me realize I wasn't alone in my struggles."</p>
+                        <span>- Sarah, group member since 2022</span>
+                    </div>
+                </div>
+                
+                <a href="{% url 'groups' %}" class="btn-primary" style="margin-top:20px;">View Offline Groups</a>
+                <a href="{% url 'online' %}" class="btn-primary" style="margin-top:20px;">View Online Groups</a>
+            </div>
+            
+            <div class="service-image" style="margin-right:70px;">
+                <img src="{% static 'img/b1 (21).jpg' %}" alt="Support group meeting">
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Serene<span>Mind</span></div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Crisis Hotlines</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <p>&copy; 2023 SereneMind. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js'%}"></script>
+</body>
+</html>

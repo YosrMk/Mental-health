@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SereneMind | Mental Health Support</title>
+    <link rel="stylesheet" href="{% static 'css/web.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    .option-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.option-card {
+    height: 100%;
+    /* Your existing card styles */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+    </style>
+    </head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Serene<span>Mind</span></div>
+        <ul class="nav-links">
+            <li><a href="{% url 'te' %}">Home</a></li>
+            <li><a href="{% url 'res' %}">Resources</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    
+    
+    <div class="service-page">
+    <div class="service-hero" style="background: linear-gradient(rgba(106, 140, 175, 0.9), rgba(154, 122, 160, 0.9)), url('https://images.unsplash.com/photo-1581093450025-4c8111a8366b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+        <div class="container">
+            <h1>Therapy Sessions</h1>
+            <p>Professional help tailored to your needs</p>
+        </div>
+    </div>
+    
+    <div class="service-content" style="padding:50px;">
+        <div class="container">
+            <div class="service-details">
+                <h2>Personalized Therapy Options</h2>
+                <p>Our licensed therapists provide evidence-based treatments for a variety of mental health concerns in a safe, confidential environment.</p>
+                
+<div class="therapy-options">
+    <a href="{% url 'quiz' %}?situation=individual" class="option-card-link">
+        <div class="option-card">
+            <i class="fas fa-user-md"></i>
+            <h3>Individual Therapy</h3>
+            <p>One-on-one sessions with a licensed therapist</p>
+        </div>
+    </a>
+
+    <a href="{% url 'quiz' %}?situation=couple" class="option-card-link">
+        <div class="option-card">
+            <i class="fas fa-people-arrows"></i>
+            <h3>Couples Therapy</h3>
+            <p>Improve communication and resolve conflicts</p>
+        </div>
+    </a>
+
+    <a href="{% url 'quiz' %}?situation=teen" class="option-card-link">
+        <div class="option-card">
+            <i class="fas fa-home"></i>
+            <h3>Family Therapy</h3>
+            <p>Strengthen family relationships and dynamics</p>
+        </div>
+    </a>
+</div>
+                
+                <div class="benefits" style="padding:50px;">
+                    <h3>Benefits of Therapy</h3>
+                    <ul>
+                        <li>Develop coping strategies for stress and anxiety</li>
+                        <li>Improve relationships and communication skills</li>
+                        <li>Process trauma and difficult life events</li>
+                        <li>Manage symptoms of depression and other mental health conditions</li>
+                    </ul>
+                </div>
+                
+                <a href="{% url 'team'%}" class="btn-primary" style="margin-left:50px;">>Find a Therapist</a>
+            </div>
+            
+            <div class="service-image">
+                <img src="{% static 'img/11.jpg' %}" alt="Therapy session">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Serene<span>Mind</span></div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Crisis Hotlines</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <p>&copy; 2023 SereneMind. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js'%}"></script>
+</body>
+</html>

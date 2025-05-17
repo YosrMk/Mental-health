@@ -1,0 +1,42 @@
+
+<div class="container mt-5">
+    <h1 class="mb-4">Educational Videos List</h1>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for video in videos %}
+        <div class="col">
+            <div class="card h-100 shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title">{{ video.title }}</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <i class="fas fa-clock"></i>
+                        Duration: {{ video.duration }}
+                    </p>
+                    <!-- <p class="card-text">
+                        {% if video.is_required %}
+                            <span class="badge bg-warning text-dark">Mandatory</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Optional</span>
+                        {% endif %}
+                    </p> -->
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'watch_video' video.id %}" class="btn btn-primary">
+                        <i class="fas fa-play-circle"></i> Watch Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        {% empty %}
+        <div class="alert alert-info">
+            No videos available at the moment
+        </div>
+        {% endfor %}
+    </div>
+</div>

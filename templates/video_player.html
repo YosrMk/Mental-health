@@ -1,0 +1,31 @@
+{% load static %}
+<div class="container">
+    <h1>{{ video.title }}</h1>
+    <div class="video-container">
+        
+        <video controls width="100%" preload="metadata" controlsList="nodownload">
+            <source src="{{ file_url }}" type='video/mp4'>
+            <source src="{{ file_url }}" type='video/webm'>
+            <track kind="captions" src="{% static 'captions/ar.vtt' %}" srclang="ar" label="العربية">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <a href="{% url 'video_list' %}" class="nav-item nav-link active">More</a>
+    <br><br>
+    <a href="{% url 'questionnaire' %}" class="nav-item nav-link active">Questionnaire</a>
+    <br><br>
+    <a href="{% url 'index' %}" class="nav-item nav-link active">Go To Home Page</a>
+    <br>
+    <br>
+
+    <!-- <div class="progress mt-4">
+        <div class="progress-bar" role="progressbar" 
+             style="width: {{ request.user.patient.progress }}%" 
+             aria-valuenow="{{ request.user.patient.progress }}" 
+             aria-valuemin="0" 
+             aria-valuemax="100">
+            {{ request.user.patient.progress }}%
+        </div>
+    </div> -->
+</div>

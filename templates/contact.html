@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | SereneMind</title>
+    <link rel="stylesheet" href="{% static 'css/web.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar (Same as Homepage) -->
+    <nav>
+        <div class="logo">Serene<span>Mind</span></div>
+        <ul class="nav-links">
+            <li><a href="{% url 'te' %}">Home</a></li>
+            <li><a href="{% url 'res' %}">Resources</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-contact">Contact</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-contact">Get Help</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <h1>We're Here to Help</h1>
+        <p>Reach out for appointments, questions, or crisis support.</p>
+    </section>
+
+    <!-- Contact Options -->
+    <section class="contact-options">
+        <div class="contact-method">
+            <i class="fas fa-phone-alt"></i>
+            <h3>Call Us</h3>
+            <p>1-800-SERENE-MIND</p>
+            <p>24/7 Crisis Line: 1-800-273-TALK</p>
+        </div>
+        <div class="contact-method">
+            <i class="fas fa-envelope"></i>
+            <h3>Email</h3>
+            <p>support@serenemind.com</p>
+            <p>Response within 24 hours</p>
+        </div>
+        <div class="contact-method">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Locations</h3>
+            <p>123 Wellness Blvd, Suite 200</p>
+            <p>Virtual appointments available</p>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+        <h2>Send Us a Message</h2>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone (Optional)</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="service">Service Interested In</label>
+                <select id="service" name="service">
+                    <option value="therapy">Individual Therapy</option>
+                    <option value="group">Group Support</option>
+                    <option value="workshop">Workshops</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <button class="faq-question">How soon can I get an appointment?<i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer">
+                <p>New clients are typically seen within 3-5 business days. Urgent cases are prioritized.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Do you offer telehealth?<i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer">
+                <p>Yes! All our services are available via secure video conferencing.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What if I can't afford therapy?<i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer">
+                <p>We offer sliding scale fees from $40-$120/session based on income.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as Homepage) -->
+    <footer>
+        <!-- Same as previous -->
+    </footer>
+
+    <!-- Chat Widget (Same as Homepage) -->
+    <div class="chat-widget">
+        <!-- Same as previous -->
+    </div>
+
+    <script src="{% static 'js/script.js'%}"></script>
+</body>
+</html>

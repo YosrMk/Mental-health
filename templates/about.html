@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | SereneMind</title>
+    <link rel="stylesheet" href="{% static 'css/web.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar (Same as Homepage) -->
+    <nav>
+        <div class="logo">Serene<span>Mind</span></div>
+        <ul class="nav-links">
+            <li><a href="{% url 'te' %}">Home</a></li>
+            <li><a href="{% url 'res' %}">Resources</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <h1>Our Mission: Your Wellness</h1>
+        <p>We believe everyone deserves access to compassionate mental health support.</p>
+    </section>
+
+    <!-- Our Story -->
+    <section class="our-story">
+        <div class="story-content">
+            <h2>Our Story</h2>
+            <p>Founded in 2020, SereneMind began as a small team of therapists and advocates dedicated to breaking down barriers to mental health care. Today, we serve thousands with personalized support.</p>
+            <a href="services.html" class="btn-primary" style="margin-top:20px;">Explore Services</a>
+        </div>
+        <div class="story-image">
+            <img src="{% static 'img/13.jpg'%}" alt="Team meeting">
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <h2>Meet Our Experts</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Dr. Sarah Lee">
+                <h3>Dr. Sarah Lee</h3>
+                <p>Clinical Psychologist</p>
+                <p>10+ years specializing in anxiety disorders.</p>
+            </div>
+            <div class="team-member">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                <h3>Michael Chen</h3>
+                <p>Licensed Counselor</p>
+                <p>Focus on youth and family therapy.</p>
+            </div>
+            <div class="team-member">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya Patel">
+                <h3>Priya Patel</h3>
+                <p>Psychiatric Nurse</p>
+                <p>Trauma-informed care specialist.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <h2>Our Core Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-heart"></i>
+                <h3>Compassion</h3>
+                <p>We listen without judgment and respond with empathy.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-lock-open"></i>
+                <h3>Accessibility</h3>
+                <p>Sliding-scale fees and multilingual support.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Confidentiality</h3>
+                <p>Your privacy is our top priority.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as Homepage) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Serene<span>Mind</span></div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Crisis Hotlines</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <p>&copy; 2023 SereneMind. All rights reserved.</p>
+    </footer>
+
+    <!-- Chat Widget (Same as Homepage) -->
+    <div class="chat-widget">
+        <button id="chat-button">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="chat-box" id="chat-box">
+            <div class="chat-header">
+                <h4>Need Help?</h4>
+                <button id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-bot-message">
+                    <p>Hi there! How can we support you today?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message..." id="user-input">
+                <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js'%}"></script>
+</body>
+</html>

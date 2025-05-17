@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SereneMind | Mental Health Support</title>
+    <link rel="stylesheet" href="{% static 'css/web.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+    .container {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 80px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #325343;
+}
+
+.title1 {
+  font-size: 25px;
+  padding-bottom: 30px;
+}
+
+.situations {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+/* Larger Cards */
+.situation-box {
+  background-color: #f5f7f5;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px; /* Increased padding for bigger boxes */
+  width: 800px; /* Increased width for larger cards */
+  height: 200px; /* Increased height for larger cards */
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space between left content and image */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.situation-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.left-content {
+  flex: 1; /* Take up remaining space */
+  text-align: left;
+}
+
+.situation-title {
+  font-size: 1.8rem; /* Increased font size for title */
+  font-weight: 600;
+  color: #f5f7f5;
+  margin: 0 0 15px 0; /* Adjusted margin */
+}
+
+.situation-description {
+  font-size: 1.2rem; /* Increased font size for description */
+  color: #f5f7f5;
+  line-height: 1.6; /* Adjusted line height */
+  margin-bottom: 25px; /* Adjusted margin */
+}
+
+.arrow-button {
+  background-color: #f5f7f5;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 30px; /* Increased button size */
+  height: 30px; /* Increased button size */
+  font-size: 1.4rem; /* Increased font size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: #666;
+  color: #f5f7f5;
+}
+
+.illustration {
+  width: 200px; /* Increased image size */
+  height: auto;
+  margin-left: 10px; /* Increased space between left content and image */
+}
+/* Custom background colors for each card */
+.situations .situation-box:nth-child(1) {
+  background-color: #397a4a; /* Light gray for the first card */
+}
+
+.situations .situation-box:nth-child(2) {
+  background-color: #a75d00; /* Light blue for the second card */
+}
+
+.situations .situation-box:nth-child(3) {
+  background-color: #147393; /* Light orange for the third card */
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .situations {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .situation-box {
+    width: 90%; /* Adjusted width for mobile */
+    height: auto; /* Auto height for mobile */
+    padding: 30px; /* Adjusted padding for mobile */
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .left-content {
+    text-align: center;
+  }
+
+  .situation-title {
+    font-size: 1.5rem; /* Adjusted font size for mobile */
+  }
+
+  .situation-description {
+    font-size: 1rem; /* Adjusted font size for mobile */
+  }
+
+  .arrow-button {
+    width: 35px; /* Adjusted button size for mobile */
+    height: 35px; /* Adjusted button size for mobile */
+    font-size: 1rem; /* Adjusted font size for mobile */
+  }
+
+  .illustration {
+    width: 120px; /* Adjusted image size for mobile */
+    margin-left: 0; /* Reset margin for mobile */
+    margin-top: 20px; /* Space between text and image */
+  }
+}
+  
+  .service-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.service-card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+  
+  
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Serene<span>Mind</span></div>
+        <ul class="nav-links">
+            <li><a href="{% url 'te' %}">Home</a></li>
+            <li><a href="{% url 'res' %}">Resources</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content" style="margin-right:40px;">
+            <h1>Your Mental Wellness Matters</h1>
+            <p>Find support, resources, and professional help in a safe space.</p>
+            <a href="#" class="btn-primary">Get Started</a>
+        </div>
+        <div class="hero-image" style="margin-left:40px;">
+            <img src="{% static 'img/10_3.jpg'%}" alt="Peaceful nature scene">
+        </div>
+    </section>
+
+
+
+
+
+<!-- In your services section -->
+<section class="services">
+    <h2>How We Can Help</h2>
+    <div class="services-grid">
+        <a href="{% url 'therapy' %}" class="service-card-link">
+            <div class="service-card">
+                <i class="fas fa-head-side-virus"></i>
+                <h3>Therapy Sessions</h3>
+                <p>Connect with licensed therapists for personalized support.</p>
+            </div>
+        </a>
+        <a href="{% url 'support' %}" class="service-card-link">
+            <div class="service-card">
+                <i class="fas fa-users"></i>
+                <h3>Support Groups</h3>
+                <p>Join communities that understand your journey.</p>
+            </div>
+        </a>
+        <a href="{% url 'res' %}" class="service-card-link">
+            <div class="service-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Resources</h3>
+                <p>Access articles, guides, and self-help tools.</p>
+            </div>
+        </a>
+    </div>
+</section>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button id="chat-button">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="chat-box" id="chat-box">
+            <div class="chat-header">
+                <h4>Need Help?</h4>
+                <button id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-bot-message">
+                    <p>Hi there! How can we support you today?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message..." id="user-input">
+                <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Serene<span>Mind</span></div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Crisis Hotlines</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <p>&copy; 2023 SereneMind. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js'%}"></script>
+</body>
+</html>
