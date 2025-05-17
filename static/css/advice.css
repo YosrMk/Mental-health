@@ -1,0 +1,738 @@
+/* General Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #242624;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 80px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #325343;
+}
+
+.title1 {
+  font-size: 25px;
+  padding-bottom: 30px;
+}
+
+.situations {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+/* Larger Cards */
+.situation-box {
+  background-color: #f5f7f5;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px; /* Increased padding for bigger boxes */
+  width: 800px; /* Increased width for larger cards */
+  height: 200px; /* Increased height for larger cards */
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space between left content and image */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.situation-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.left-content {
+  flex: 1; /* Take up remaining space */
+  text-align: left;
+}
+
+.situation-title {
+  font-size: 1.8rem; /* Increased font size for title */
+  font-weight: 600;
+  color: #f5f7f5;
+  margin: 0 0 15px 0; /* Adjusted margin */
+}
+
+.situation-description {
+  font-size: 1.2rem; /* Increased font size for description */
+  color: #f5f7f5;
+  line-height: 1.6; /* Adjusted line height */
+  margin-bottom: 25px; /* Adjusted margin */
+}
+
+.arrow-button {
+  background-color: #f5f7f5;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 30px; /* Increased button size */
+  height: 30px; /* Increased button size */
+  font-size: 1.4rem; /* Increased font size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: #666;
+  color: #f5f7f5;
+}
+
+.illustration {
+  width: 200px; /* Increased image size */
+  height: auto;
+  margin-left: 10px; /* Increased space between left content and image */
+}
+/* Custom background colors for each card */
+.situations .situation-box:nth-child(1) {
+  background-color: #397a4a; /* Light gray for the first card */
+}
+
+.situations .situation-box:nth-child(2) {
+  background-color: #a75d00; /* Light blue for the second card */
+}
+
+.situations .situation-box:nth-child(3) {
+  background-color: #147393; /* Light orange for the third card */
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .situations {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .situation-box {
+    width: 90%; /* Adjusted width for mobile */
+    height: auto; /* Auto height for mobile */
+    padding: 30px; /* Adjusted padding for mobile */
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .left-content {
+    text-align: center;
+  }
+
+  .situation-title {
+    font-size: 1.5rem; /* Adjusted font size for mobile */
+  }
+
+  .situation-description {
+    font-size: 1rem; /* Adjusted font size for mobile */
+  }
+
+  .arrow-button {
+    width: 35px; /* Adjusted button size for mobile */
+    height: 35px; /* Adjusted button size for mobile */
+    font-size: 1rem; /* Adjusted font size for mobile */
+  }
+
+  .illustration {
+    width: 120px; /* Adjusted image size for mobile */
+    margin-left: 0; /* Reset margin for mobile */
+    margin-top: 20px; /* Space between text and image */
+  }
+}
+  /*new section */ 
+  .new-section {
+    display: flex;
+    justify-content: space-between; /* Space between left and right content */
+    align-items: flex-start; /* Align items to the top */
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 30px;
+    margin-top: 5px;
+    background-color: #fff;
+    width: 100%;
+    transform: translateY(50px); /* Start slightly below */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .new-content {
+    flex: 1; /* Take up remaining space */
+    text-align: left;
+    margin-right: 30px; /* Space between content and image */
+  }
+  
+  .new-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #325343;
+    margin-bottom: 20px;
+  }
+  
+  .new-description {
+    font-size: 1.4rem;
+    color: #4a4d4a;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .new-button {
+    background-color: #70d38a;
+    color: #325343;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .new-button:hover {
+    background-color: #325343;
+    color: #fff;
+  }
+  
+  .new-image {
+    flex: 1; /* Take up remaining space */
+    max-width: 50%; /* Limit image width */
+  }
+  
+  .new-image img {
+    width: 100%;
+    height: auto;
+
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .situations {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .situation-box {
+      width: 80%;
+      margin-bottom: 20px;
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .left-content {
+      text-align: center;
+    }
+  
+    .illustration {
+      margin-left: 0; /* Reset margin for mobile */
+      margin-top: 20px; /* Space between text and image */
+    }
+  
+    .new-section {
+      flex-direction: column; /* Stack content and image vertically on mobile */
+      padding: 20px; /* Smaller padding on mobile */
+    }
+  
+    .new-content {
+      margin-right: 0; /* Reset margin for mobile */
+      margin-bottom: 20px; /* Space between content and image */
+    }
+  
+    .new-image {
+      max-width: 100%; /* Full width on mobile */
+    }
+  }
+  /* Second New Section Styles */
+.new-section.reverse {
+  display: flex;
+  justify-content: space-between; /* Space between left and right content */
+  align-items: flex-start; /* Align items to the top */
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  width: 100%;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+
+
+.new-section.reverse .new-content {
+  flex: 1; /* Take up remaining space */
+  text-align: left; /* Align text to the right */
+  margin-left: 100px; /* Space between image and content */
+}
+
+.new-section.reverse .new-title {
+  font-size: 2.5rem;
+    font-weight: 600;
+    color: #325343;
+    margin-bottom: 20px;
+}
+
+.new-section.reverse .new-description {
+  font-size: 1.4rem;
+  color: #4a4d4a;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+
+.new-section.reverse .new-image {
+  flex: 1; /* Take up remaining space */
+  max-width: 50%; /* Limit image width */
+}
+
+.new-section.reverse .new-image img {
+  width: 100%;
+  height: auto;
+
+}
+
+/* Responsive Design for Second Section */
+@media (max-width: 768px) {
+  .new-section.reverse {
+    flex-direction: column; /* Stack content and image vertically on mobile */
+    padding: 20px; /* Smaller padding on mobile */
+  }
+
+  .new-section.reverse .new-content {
+    text-align: center; /* Center-align text on mobile */
+    margin-left: 0; /* Reset margin for mobile */
+    margin-bottom: 20px; /* Space between content and image */
+  }
+
+  .new-section.reverse .new-image {
+    max-width: 100%; /* Full width on mobile */
+  }
+}
+/* Motivation Section */
+.motivation-section {
+  padding: 80px 20px; /* Add padding for spacing */
+  background-color: #fff; /* Light background */
+}
+
+.motivation-container {
+  max-width: 1200px; /* Limit width for better readability */
+  margin: 0 auto; /* Center the container */
+  display: flex;
+  align-items: center; /* Align items vertically */
+  gap: 40px; /* Space between content and image */
+}
+
+/* Content on the Left */
+.motivation-content {
+  flex: 1; /* Take up 50% of the space */
+  text-align: left; /* Align text to the left */
+  order: 1; /* Ensure content comes first */
+}
+
+/* Image on the Right */
+.motivation-image {
+  flex: 1; /* Take up 50% of the space */
+  order: 2; /* Ensure image comes second */
+}
+
+.motivation-image img {
+  width: 100%; /* Make the image responsive */
+  height: auto;
+}
+
+.motivation-title {
+  font-size: 2.5rem;
+    font-weight: 600;
+    color: #325343;
+    margin-bottom: 20px;
+}
+
+.motivation-text {
+  font-size: 1.4rem;
+  color: #4a4d4a;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.motivation-button {
+  background-color: #70d38a;
+    color: #325343;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.motivation-button:hover {
+  background-color: #325343;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .motivation-container {
+    flex-direction: column; /* Stack image and content vertically on mobile */
+    gap: 20px; /* Reduce space between items */
+  }
+
+  .motivation-content {
+    text-align: center; /* Center-align text on mobile */
+    order: 2; /* Content comes after the image on mobile */
+  }
+
+  .motivation-image {
+    order: 1; /* Image comes before the content on mobile */
+  }
+
+  .motivation-title {
+    font-size: 1.8rem; /* Smaller title on mobile */
+  }
+
+  .motivation-text {
+    font-size: 1rem; /* Smaller text on mobile */
+  }
+
+  .motivation-button {
+    width: 100%; /* Full-width button on mobile */
+  }
+}
+/*--------------------------------------------------------------
+# Testimonials
+--------------------------------------------------------------*/
+/* Testimonials Section Styles */
+.testimonials {
+  padding: 80px 0;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+}
+
+/* Section Header (Line and Title) */
+.section-header {
+  margin-bottom: 50px; /* Space below the header */
+}
+
+.section-line {
+  width: 70%; /* Length of the line */
+  height: 2px; /* Thickness of the line */
+  background-color: #c2bcbc; /* Color of the line */
+  margin: 0 auto 20px; /* Center the line and add space below */
+  
+}
+
+.section-title {
+  font-size: 2rem; /* Title font size */
+  font-weight: 700; /* Bold text */
+  color: #325343; /* Dark green color */
+  margin-top: 30px; /* Remove default margin */
+}
+.testimonials::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+}
+
+.testimonials .section-header {
+  margin-bottom: 40px;
+  text-align: center;
+  color: #000000;
+}
+
+.testimonials .testimonials-slider {
+  overflow: hidden;
+}
+
+.testimonials .testimonial-item {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+.testimonials .testimonial-item .testimonial-text {
+
+  color: #444;
+  font-size: 30px;
+  max-width: 800px; /* Limit the width of the description */
+  margin: 0 auto 30px auto; /* Center the description */
+  position: relative;
+}
+
+.testimonials .testimonial-item .quote-icon-left,
+.testimonials .testimonial-item .quote-icon-right {
+  color: #325343;
+  font-size: 26px;
+}
+
+.testimonials .testimonial-item .quote-icon-left {
+  display: inline-block;
+  left: -5px;
+  position: relative;
+}
+
+.testimonials .testimonial-item .quote-icon-right {
+  display: inline-block;
+  right: -5px;
+  position: relative;
+  top: 10px;
+}
+
+.testimonials .testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.testimonials .testimonial-author .testimonial-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  margin-right: 15px;
+}
+
+.testimonials .testimonial-author .author-details {
+  text-align: left;
+}
+
+.testimonials .testimonial-author h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: #325343;
+}
+
+.testimonials .testimonial-author h4 {
+  font-size: 20px;
+  color: #666;
+  margin: 5px 0 0 0;
+}
+
+.testimonials .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.testimonials .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(49, 46, 46, 0.4);
+  opacity: 0.5;
+}
+
+.testimonials .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #325343;
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .testimonials {
+    background-attachment: fixed;
+  }
+}
+/* Header Styles */
+.header {
+  background-color: #eee; /* Dark green background */
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ensure the header spans the full width */
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between; /* Space between logo and nav */
+  align-items: center;
+  max-width: 1200px; /* Same as the rest of your page */
+  margin: 0 auto; /* Center the container */
+  padding: 0 20px; /* Add some padding */
+}
+
+/* Logo Styles */
+.logo a {
+  color: #444;
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Navigation Styles */
+.navbar .nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .nav-item {
+  margin-left: 20px; /* Space between navigation items */
+}
+
+.navbar .nav-link {
+  color: #444;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px 10px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #ffc451; /* Yellow color on hover */
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar .nav-list {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar .nav-item {
+    margin: 10px 0;
+  }
+
+  .navbar .nav-link {
+    padding: 10px 0;
+    display: block;
+  }
+}
+/* Counter Section Styles */
+.numbers {
+  background-color: #fff; /* Light background */
+  padding: 80px 0; /* Vertical spacing */
+  margin-bottom: 5px;
+}
+
+.numbers .container {
+  max-width: 1200px; /* Limit width for better readability */
+  margin: 0 auto; /* Center the container */
+  padding: 0 20px; /* Horizontal padding */
+}
+
+.numbers-container {
+  display: flex;
+  justify-content: space-between; /* Space between title and counters */
+  align-items: flex-start; /* Align items to the top */
+}
+
+.numbers-heading {
+  flex: 1; /* Take up remaining space */
+  text-align: left; /* Align text to the left */
+}
+
+.numbers-heading .heading-xl {
+  font-size: 2.5rem; /* Large heading */
+  font-weight: 700; /* Bold text */
+  color: #325343; /* Dark green color */
+  margin-bottom: 20px; /* Spacing below heading */
+}
+
+.numbers-heading .txt-emphasis {
+  color: #397a4a; /* Highlighted text color */
+}
+
+.counter-container {
+  flex: 1; /* Take up remaining space */
+  display: flex;
+  flex-direction: column; /* Stack counters vertically */
+  gap: 20px; /* Space between counters */
+}
+
+.counter-item {
+  text-align: left; /* Align numbers and labels to the right */
+}
+
+.counter-number {
+  font-size: 3rem; /* Large counter number */
+  font-weight: 700; /* Bold text */
+  color: #325343; /* Dark green color */
+  display: block; /* Ensure it's on its own line */
+}
+
+.counter-line {
+  width: 100%; /* Full width of the counter item */
+  height: 1px; /* Line thickness */
+  background-color: #ddd; /* Light gray line */
+  margin: 10px 0; /* Spacing above and below the line */
+}
+
+.counter-label {
+  font-size: 1.1rem; /* Label text size */
+  color: #4a4d4a; /* Dark gray color */
+  line-height: 1.5; /* Improved readability */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .numbers-container {
+    flex-direction: column; /* Stack title and counters vertically on mobile */
+    gap: 30px; /* Increase gap for better spacing */
+  }
+
+  .numbers-heading .heading-xl {
+    font-size: 2rem; /* Smaller heading on mobile */
+  }
+
+  .counter-number {
+    font-size: 2.5rem; /* Smaller counter number on mobile */
+  }
+
+  .counter-label {
+    font-size: 1rem; /* Smaller label text on mobile */
+  }
+}
+
+
+             /* Footer */
+             .footer {
+              background-color: #2c3e50;
+              color: #fff;
+              text-align: center;
+              padding: 40px 0; /* Consistent padding for footer */
+              margin-top: 60px; /* Consistent margin above footer */
+          }
+  
+          .footer p {
+              margin: 0;
+              font-size: 16px;
+          }
+  
+          .social-links {
+              margin-top: 20px; /* Consistent margin above social links */
+          }
+  
+          .social-links a {
+              color: #fff;
+              margin: 0 10px; /* Consistent margin between social icons */
+              font-size: 20px;
+              transition: color 0.3s ease;
+          }
+  
+          .social-links a:hover {
+              color: #1abc9c;
+          }
