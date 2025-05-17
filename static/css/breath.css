@@ -1,0 +1,24 @@
+.breathing-exercise {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding-top: 30px;
+  }
+  
+  .circle {
+    width: 150px;
+    height: 150px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    margin: 50px auto;
+    animation: breathe 10s infinite;
+  }
+  
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+  }
+  
+  .instruction {
+    font-size: 1.2em;
+    color: #333;
+  }

@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <h2>My Profile</h2>
+    <div class="card mt-3">
+        <div class="card-body">
+            <p><strong>Gender:</strong> {{ patient.get_gender_display }}</p>
+            <p><strong>Birth Date:</strong> {{ patient.birth_date }}</p>
+            <p><strong>Phone:</strong> {{ patient.phone_number }}</p>
+            <p><strong>Address:</strong> {{ patient.address }}</p>
+            <div class="progress mt-3">
+                <div class="progress-bar" 
+                    role="progressbar" 
+                    style="width: {{ request.user.patient.progress }}%" 
+                    aria-valuenow="{{ request.user.patient.progress }}" 
+                    aria-valuemin="0" 
+                    aria-valuemax="100">
+                    {{ request.user.patient.progress }}% Complete
+                </div>
+            </div>
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
+        </div>
+    </div>
+</div>

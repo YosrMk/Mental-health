@@ -1,0 +1,39 @@
+{% load static %}
+
+<div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Question {{ question.id }}</h3>
+        </div>
+        
+        <div class="card-body">
+            <h4 class="card-title">{{ question.text }}</h4>
+            
+            <form method="post" action="{% url 'submit_answer' question.id %}">
+                {% csrf_token %}
+                
+                <div class="list-group mt-4">
+                    {% for option in options %}
+                    <label class="list-group-item">
+                        <input type="radio" 
+                               name="option" 
+                               value="{{ option.id }}" 
+                               class="form-check-input me-3">
+                        {{ option.text }}
+                    </label>
+                    {% endfor %}
+
+
+                </div>
+                
+                <button type="submit" class="btn btn-success mt-4">
+                    <i class="fas fa-check-circle me-2"></i>Submit Answer
+                </button>
+            </form>
+        </div>
+        
+        <div class="card-footer text-muted">
+            Progress: {{ patient.progress }}%
+        </div>
+    </div>
+</div>

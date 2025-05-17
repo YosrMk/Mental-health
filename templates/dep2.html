@@ -1,0 +1,464 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Solution Page</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0; /* Consistent padding for all sections */
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1abc9c;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #16a085;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0; /* Consistent padding for all sections */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px; /* Consistent gap between content and image */
+        }
+
+        .section .content {
+            flex: 1;
+        }
+
+        .section .image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .section .image img {
+            max-width: 100%;
+            width: 450px;
+            height: 450px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Highlight h2 tags with light green shadow */
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(144, 238, 144, 0.5); /* Light green shadow */
+        }
+
+        .section p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px; /* Consistent margin for paragraphs */
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px; /* Consistent gap between videos */
+            margin-top: 20px; /* Consistent margin above the grid */
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-item iframe:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal Overlay for Enlarged Video */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal iframe {
+            width: 90%;
+            height: 90%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        /* Dotted List Styles */
+        .dotted-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .dotted-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px; /* Consistent margin between list items */
+            font-size: 18px;
+            color: #555;
+        }
+
+        .dotted-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #1abc9c;
+            border-radius: 50%;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0; /* Consistent padding for footer */
+            margin-top: 60px; /* Consistent margin above footer */
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .social-links {
+            margin-top: 20px; /* Consistent margin above social links */
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 10px; /* Consistent margin between social icons */
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #1abc9c;
+        }
+
+        /* Book Appointment Button */
+        .book-appointment {
+            text-align: center;
+            margin: 40px 0; /* Consistent margin for the button */
+        }
+
+        .book-appointment button {
+            background-color: #1abc9c;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            animation: shake 2s infinite; /* Shaking animation */
+        }
+
+        .book-appointment button:hover {
+            background-color: #16a085;
+            animation: none; /* Stop shaking on hover */
+        }
+
+        /* Shaking Animation */
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-5px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">SolutionHub</a>
+            <ul class="nav-links">
+                <li><a href="#definition">Definition</a></li>
+                <li><a href="#causes">Causes</a></li>
+                <li><a href="#treatment">Treatment</a></li>
+                <li><a href="#videos">Videos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1>Understanding and Solving the Problem</h1>
+            <p>Explore the definition, causes, and treatment of the issue.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Definition Section -->
+        <section id="definition" class="section">
+            <div class="container">
+                <div class="content">
+                    <h2>High-Functioning Depression: Symptoms And Mental Health Treatment Options?</h2>
+                    <p>
+                        Rather than a clinical diagnosis, high-functioning depression is a term used to describe a condition in which individuals experience depressive symptoms while continuing to function effectively in their daily lives. Since these individuals maintain their work performance, family obligations, and social responsibilities, their symptoms may go unnoticed by those around them.
+Unlike major depression, which can severely impact daily function, high-functioning depression tends to be associated with persistent but manageable symptoms. However, this doesn’t mean symptoms shouldn’t be taken seriously. Long-term emotional distress can impact mental, physical, and emotional well-being, potentially contributing to the development of other mental health disorders over time                                                                                                                                                                                                                                                                                                                        .
+                    </p>
+                </div>
+                <div class="image">
+                    <img src="{% static 'img/b1 (4).jpg' %}" alt="Definition Image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Causes Section -->
+        <section id="causes" class="section">
+            <div class="container">
+                <div class="image">
+                    <img src="{% static 'img/b1 (2).jpg' %}" alt="Causes Image">
+                </div>
+                <div class="content">
+                    <h2>Causes of the Problem</h2>
+                    <ul class="dotted-list">
+                        Anxiety can arise in the spring for many reasons. Often, anxiety can co-occur with depression symptoms, especially if one has not previously experienced seasonal depression. In some cases, it arises due to unease about transitions or life events. For example, some people may feel anxious as the weather gets warmer because of discomfort showing more skin in warm-weather clothes. Specific anxieties like this could exacerbate SAD symptoms
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Treatment Section -->
+        <section id="treatment" class="section">
+            <div class="container">
+                <div class="content">
+                    <h2>Treatment of the Problem</h2>
+                    <ul class="dotted-list">
+                        <li>Try a light therapy lamp for depression.</li>
+                        <li>Focus on eating nutrient-dense foods, or ask your doctor about vitamins and supplements   .</li>
+                        <li> Practice enjoyable forms of self-care   </li>
+                        <li>Reach out for mental health support Seasonal affective disorder vs. other depressive disorders Seasonal affective disorder has most of the same symptoms as major depressive disorder (MDD) and the depressive episodes that can sometimes affect people with conditions like bipolar disorder.</li>
+                        </ul>
+                </div>
+                <div class="image">
+                    <img src="{% static 'img/b1 (7).jpg' %}" alt="Treatment Image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Videos Section -->
+        <h2 style="padding-left: 70px;">Related Videos</h2>
+        <section id="videos" class="section">
+            <div class="container">
+                <div class="video-grid" style="padding-left: 100px;">
+                    <div class="video-item">
+                        <iframe src="{% static 'img/b1 (3).mp4' %}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-item">
+                        <iframe src="{% static 'img/b1 (1).mp4' %}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-item">
+                        <iframe src="{% static 'img/b1 (3).mp4' %}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal for Enlarged Video -->
+        <div class="modal" id="videoModal">
+            <iframe id="modalVideo" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <!-- Book Appointment Section -->
+        <div class="book-appointment">
+            <button onclick="window.location.href='{% url "appointment"%}'">therapist me be able to help</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 SolutionHub. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations for sections
+        const sections = document.querySelectorAll('.section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Video Modal Functionality
+        const videoModal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const videoItems = document.querySelectorAll('.video-item iframe');
+
+        videoItems.forEach(video => {
+            video.addEventListener('click', () => {
+                modalVideo.src = video.src;
+                videoModal.classList.add('active');
+            });
+        });
+
+        // Close Modal on Click Outside
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                modalVideo.src = ''; // Stop the video
+            }
+        });
+    </script>
+</body>
+</html>

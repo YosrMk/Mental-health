@@ -1,0 +1,448 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+            
+        }
+
+        /* Consistent Margin for All Sections */
+        .main-content {
+            margin: 0 12%; /* Consistent left and right margin */
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height:80px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1abc9c;
+        }
+
+        /* Recent Section */
+        .recent-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+
+        .recent-section i {
+            font-size: 1.5rem;
+        }
+
+        /* Card Container */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+            gap: 20px; /* Space between cards */
+        }
+
+        /* Card Styles */
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Align content to top and button to bottom */
+            height: 100%; /* Ensure all cards have the same height */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 150px; /* Fixed height for image container */
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image covers the container */
+            border-radius: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .card a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #1abc9c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start; /* Align button to the left */
+        }
+
+        .card a:hover {
+            background-color: #16a085;
+        }
+
+        /* Category Header */
+        .category-header {
+            grid-column: 1 / -1; /* Span across all columns */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 40px 0 20px;
+        }
+
+        .top-line {
+            flex-grow: 1;
+            height: 2px;
+            background-color: #1abc9c;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* SVG Section */
+        .svg-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .svg-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .svg-item {
+            max-width: 300px;
+        }
+
+        .svg-image {
+            width: 140px;
+            height: 140px;
+            margin-bottom: 20px;
+        }
+
+        .svg-text {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Email Sign-Up Section */
+        .email-signup-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: #f4f4f4;
+        }
+
+        .email-signup-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .email-signup-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .email-input {
+            padding: 10px;
+            width: 500px;
+            height:50px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .signup-button {
+            padding: 10px 20px;
+            background-color: #1abc9c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-button:hover {
+            background-color: #16a085;
+        }
+
+             /* Footer */
+        .footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0; /* Consistent padding for footer */
+            margin-top: 60px; /* Consistent margin above footer */
+            height:80px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .social-links {
+            margin-top: 20px; /* Consistent margin above social links */
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 10px; /* Consistent margin between social icons */
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #1abc9c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">MentalCare</a>
+                <ul class="nav-links">
+                    <li><a href="{% url 'te' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'advice' %}">Advice</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        <section class="advice-page">
+            <!-- Recent Section -->
+            <div class="recent-section">
+                <i class="fas fa-clock"></i>
+                <span>Recent</span>
+            </div>
+
+            <!-- Cards -->
+            <div class="card-container">
+                <!-- General Cards -->
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551232103.jpg' %}" alt="Anxiety Image" class="card-image">
+                    </div>
+                    <p>What Is Alternative Holistic Therapy? Therapies That Address Mind-Body Health</p>
+                    <a href="anxiety.html">Read More</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551232031.jpg' %}" alt="Depression Image" class="card-image">
+                    </div>
+                    <p>Parenting With ADHD: Effects On The Mental Health Of The Parent And The Child</p>
+                    <a href="{% url 'dep2' %}">Read More</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551232117.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>World Sleep Day: Why Prioritizing Sleep Is Essential For Your Health</p>
+                    <a href="{% url 'dep3' %}">Read More</a>
+                </div>
+
+                <!-- Category: Depression -->
+                <div class="category-header">
+                    <div class="top-line"></div>
+                    <span class="category-title">Depression</span>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551231977.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>4 Ways To Get Through Spring Depression, Anxiety, & Seasonal Affective Disorder</p>
+                    <a href="{% url 'dep' %}">Read More</a>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551232014.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>High-Functioning Depression: Symptoms And Mental Health Treatment Options</p>
+                    <a href="{% url 'dep4' %}">Read More</a>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551232096.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>Winter Mental Health: January Blues Vs. Seasonal Affective Disorder</p>
+                    <a href="{% url 'dep5' %}">Read More</a>
+                </div>
+
+                <!-- Anxiety Category -->
+                <div class="category-header">
+                    <div class="top-line"></div>
+                    <span class="category-title">Anxiety</span>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551232041.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>How To Keep An Anxiety Journal For Mental Health</p>
+                    <a href="{% url 'dep5' %}">Read More</a>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551232111.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>How Stress Management Can Improve Mental Health: Stop Feeling Overwhelmed And Anxious</p>
+                    <a href="{% url 'dep5' %}">Read More</a>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551231987.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>Mental Health And Anxiety Disorders: Ways To Cope With Overwhelming Anxiety</p>
+                    <a href="{% url 'dep5' %}">Read More</a>
+                </div>
+
+                <!-- Therapy Category -->
+                <div class="category-header">
+                    <div class="top-line"></div>
+                    <span class="category-title">Therapy</span>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551231957.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>How To Keep An Anxiety Journal For Mental Health</p>
+                    <a href="{% url 'dep5' %}">Read More</a>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551231968.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>How Stress Management Can Improve Mental Health: Stop Feeling Overwhelmed And Anxious</p>
+                    <a href="stress.html">Read More</a>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="{% static 'img/1742551231947.jpg' %}" alt="Stress Image" class="card-image">
+                    </div>
+                    <p>Mental Health And Anxiety Disorders: Ways To Cope With Overwhelming Anxiety</p>
+                    <a href="stress.html">Read More</a>
+                </div>
+            </div>
+
+            <!-- SVG Section -->
+            <div class="svg-section">
+                <p class="svg-title">The review process</p>
+                <div class="svg-container">
+                    <div class="svg-item">
+                        <img src="{% static 'img/review.svg' %}" alt="Icon 1" class="svg-image">
+                        <p class="svg-text">Each article is medically reviewed by a licensed therapist.</p>
+                    </div>
+                    <div class="svg-item">
+                        <img src="{% static 'img/write.svg' %}" alt="Icon 2" class="svg-image">
+                        <p class="svg-text">Our writers are researchers and advocates in the mental health space.</p>
+                    </div>
+                    <div class="svg-item">
+                        <img src="{% static 'img/update.svg' %}" alt="Icon 3" class="svg-image">
+                        <p class="svg-text">Articles are updated to reflect the latest health information.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Sign-Up Section -->
+            <div class="email-signup-section">
+                <h2 class="email-signup-title">Helpful mental health resources delivered to your inbox</h2>
+                <div class="email-signup-form">
+                    <input type="email" placeholder="Enter your email" class="email-input">
+                    <button type="submit" class="signup-button">Sign Up</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+        <!-- Footer -->
+    <footer class="footer" >
+        <div class="container">
+            <p>&copy; 2023 SolutionHub. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

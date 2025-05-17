@@ -1,0 +1,682 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SereneMind | Mental Health Support</title>
+    <link rel="stylesheet" href="{% static 'css/web.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Additional styles for the expanded content */
+        .expanded-content {
+            display: none;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .expanded-content h2 {
+            color: #3a5a78;
+            margin-bottom: 15px;
+        }
+        
+        .expanded-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .expanded-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #6a8caf;
+        }
+        
+        .resource-item {
+            cursor: pointer;
+        }
+
+
+       .video-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .video-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    
+    .video-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .video-thumbnail {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+    
+    .video-thumbnail img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 50px;
+        opacity: 0.8;
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    
+    .video-info {
+        padding: 15px;
+    }
+    
+     
+    /* Video Player Container */
+    .mindfulness-video-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 20px auto;
+        display: none; /* Hidden by default */
+    }
+    
+    .mindfulness-video-container video {
+        width: 100%;
+         height:500px;
+        border-radius: 8px;
+        display: block; /* Makes video a block element */
+    }
+    
+    /* Back button styling - Updated */
+    .back-button {
+        display: block;
+        width: fit-content;
+        margin: 15px auto 0 auto; /* Top margin only, centered */
+        padding: 8px 20px;
+        background: #6a8caf;
+        color: white;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+     /* Add these new styles for audio content */
+        .audio-content {
+            display: none;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .audio-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .audio-icon {
+            font-size: 24px;
+            color: #6a8caf;
+            margin-right: 15px;
+        }
+        
+        .audio-info {
+            flex-grow: 1;
+        }
+        
+        .audio-info h4 {
+            margin: 0 0 5px 0;
+            color: #3a5a78;
+        }
+        
+        .audio-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Depression content specific styles */
+        .warning-note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .emergency-contact {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .self-care-tip {
+            background-color: #e2f3f8;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Serene<span>Mind</span></div>
+        <ul class="nav-links">
+            <li><a href="{% url 'te' %}">Home</a></li>
+            <li><a href="{% url 'res' %}">Resources</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <div class="service-page">
+        <div class="service-hero" style=" background: linear-gradient(rgba(106, 140, 175, 0.9), rgba(154, 122, 160, 0.9)), url('https://images.unsplash.com/photo-1581093450025-4c8111a8366b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+            <div class="container">
+                <h1>Resources</h1>
+                <p>Tools for your mental health journey</p>
+            </div>
+        </div>
+        
+        <div class="service-content" style="margin-left:70px;margin-right:70px;">
+            <div class="container">
+                <div class="resource-categories">
+                    <h2>Explore Our Resources</h2>
+                    
+                    <!-- Understanding Anxiety Content (hidden by default) -->
+                    <div id="anxiety-content" class="expanded-content">
+                        <span class="close-btn" onclick="closeContent('anxiety-content')">&times;</span>
+                        <h2>Understanding Anxiety</h2>
+                        <p>Anxiety is a normal and often healthy emotion. However, when a person regularly feels disproportionate levels of anxiety, it might become a medical disorder. Anxiety disorders form a category of mental health diagnoses that lead to excessive nervousness, fear, apprehension, and worry.</p>
+                        
+                        <h3>Types of Anxiety Disorders</h3>
+                        <ul>
+                            <li><strong>Generalized Anxiety Disorder (GAD):</strong> Chronic anxiety, exaggerated worry even when there is little or nothing to provoke it.</li>
+                            <li><strong>Panic Disorder:</strong> Unexpected and repeated episodes of intense fear accompanied by physical symptoms.</li>
+                            <li><strong>Social Anxiety Disorder:</strong> Overwhelming anxiety and excessive self-consciousness in everyday social situations.</li>
+                            <li><strong>Specific Phobias:</strong> Intense fear of a specific object or situation, such as heights or flying.</li>
+                        </ul>
+                        
+                        <h3>Symptoms of Anxiety</h3>
+                        <p>Common symptoms include:</p>
+                        <ul>
+                            <li>Feeling nervous, restless or tense</li>
+                            <li>Having a sense of impending danger, panic or doom</li>
+                            <li>Increased heart rate</li>
+                            <li>Rapid breathing (hyperventilation)</li>
+                            <li>Sweating</li>
+                            <li>Trembling</li>
+                            <li>Feeling weak or tired</li>
+                            <li>Trouble concentrating</li>
+                        </ul>
+                        
+                        <h3>Coping Strategies</h3>
+                        <p>While professional help is important for anxiety disorders, these strategies can help manage symptoms:</p>
+                        <ul>
+                            <li><strong>Deep breathing:</strong> Practice diaphragmatic breathing to calm your nervous system.</li>
+                            <li><strong>Physical activity:</strong> Regular exercise can help reduce anxiety.</li>
+                            <li><strong>Limit caffeine and alcohol:</strong> These can aggravate anxiety.</li>
+                            <li><strong>Sleep hygiene:</strong> Ensure you're getting enough quality sleep.</li>
+                            <li><strong>Mindfulness and meditation:</strong> These practices can help you stay grounded.</li>
+                        </ul>
+                        
+                        <p>If anxiety is interfering with your daily life, consider reaching out to a mental health professional for support and treatment options.</p>
+                    </div>
+
+                    <!-- Understanding Depression Content (hidden by default) -->
+                    <div id="depression-content" class="expanded-content">
+                        <span class="close-btn" onclick="closeContent('depression-content')">&times;</span>
+                        <h2>Understanding Depression</h2>
+                        <p>Depression is more than just feeling sad or going through a rough patch. It's a serious mental health condition that requires understanding and medical care. Left untreated, depression can be devastating for those who have it and their families.</p>
+                        
+                        <div class="warning-note">
+                            <strong>Important:</strong> Depression is a treatable condition. If you think you may be depressed, seek help from a healthcare provider.
+                        </div>
+                        
+                        <h3>Types of Depression</h3>
+                        <ul>
+                            <li><strong>Major Depressive Disorder (MDD):</strong> Characterized by persistent feelings of sadness, hopelessness, and loss of interest in activities.</li>
+                            <li><strong>Persistent Depressive Disorder (Dysthymia):</strong> A chronic form of depression lasting for at least two years.</li>
+                            <li><strong>Postpartum Depression:</strong> Depression that occurs after childbirth.</li>
+                            <li><strong>Seasonal Affective Disorder (SAD):</strong> Depression related to changes in seasons, typically starting in fall or winter.</li>
+                            <li><strong>Bipolar Disorder:</strong> Includes episodes of depression alternating with periods of mania or hypomania.</li>
+                        </ul>
+                        
+                        <h3>Symptoms of Depression</h3>
+                        <p>Depression symptoms can vary from mild to severe and may include:</p>
+                        <ul>
+                            <li>Persistent sad, anxious, or "empty" mood</li>
+                            <li>Feelings of hopelessness or pessimism</li>
+                            <li>Irritability</li>
+                            <li>Loss of interest or pleasure in hobbies and activities</li>
+                            <li>Decreased energy or fatigue</li>
+                            <li>Difficulty concentrating, remembering, or making decisions</li>
+                            <li>Changes in appetite or weight</li>
+                            <li>Thoughts of death or suicide, or suicide attempts</li>
+                        </ul>
+                        
+                        <div class="emergency-contact">
+                            <strong>If you're having suicidal thoughts:</strong> Contact the National Suicide Prevention Lifeline at 1-800-273-8255 or text HOME to 741741 for immediate help.
+                        </div>
+                        
+                        <h3>Treatment Options</h3>
+                        <p>Depression is among the most treatable of mental disorders. Between 80% and 90% of people with depression eventually respond well to treatment:</p>
+                        <ul>
+                            <li><strong>Psychotherapy:</strong> Cognitive Behavioral Therapy (CBT) and other forms of talk therapy can be very effective.</li>
+                            <li><strong>Medication:</strong> Antidepressants can help modify brain chemistry.</li>
+                            <li><strong>Lifestyle Changes:</strong> Regular exercise, healthy eating, and good sleep habits can help manage symptoms.</li>
+                            <li><strong>Brain Stimulation Therapies:</strong> For treatment-resistant depression, options like ECT or TMS may be considered.</li>
+                        </ul>
+                        
+                        <div class="self-care-tip">
+                            <h4>Self-Care Strategies</h4>
+                            <ul>
+                                <li>Set realistic goals and prioritize tasks</li>
+                                <li>Try to be with other people and confide in someone</li>
+                                <li>Postpone important decisions until you feel better</li>
+                                <li>Engage in mild physical activity or exercise</li>
+                                <li>Expect your mood to improve gradually, not immediately</li>
+                            </ul>
+                        </div>
+                        
+                        <p>Remember that seeking help is a sign of strength, not weakness. With proper treatment, most people with depression can get better.</p>
+                    </div>
+                    
+                    <!-- Mindfulness Video Content (hidden by default) -->
+                    <div id="mindfulness-content" class="expanded-content">
+                        <span class="close-btn" onclick="closeContent('mindfulness-content')">&times;</span>
+                        <h2>Mindfulness Techniques for Stress and Anxiety Reduction</h2>
+                        <p>Mindfulness is the practice of purposely focusing your attention on the present moment and accepting it without judgment. Research has shown it to be effective in reducing stress, improving focus, and contributing to better mental health.</p>
+                        
+                        <h3>Mindfulness Video Exercises</h3>
+                        <p>Practice with these guided mindfulness exercises:</p>
+                        
+                        <div class="video-gallery" id="mindfulness-gallery">
+                            <!-- Video 1 -->
+                            <div class="video-card" onclick="playMindfulnessVideo('{% static 'img/ah.mp4' %}', 'Basic Mindfulness Meditation')">
+                                <div class="video-thumbnail">
+                                    <img src="{% static 'img/b1 (11).jpg' %}" alt="Mindfulness Meditation">
+                                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="video-info">
+                                    <h4>Basic Mindfulness Meditation</h4>
+                                    <p>10 min • Beginner friendly</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Video 2 -->
+                            <div class="video-card" onclick="playMindfulnessVideo('{% static 'img/b1 (3).mp4' %}', 'Body Scan Meditation')">
+                                <div class="video-thumbnail">
+                                    <img src="{% static 'img/b1 (9).jpg' %}" alt="Body Scan">
+                                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="video-info">
+                                    <h4>Body Scan Meditation</h4>
+                                    <p>15 min • Full body relaxation</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Video 3 -->
+                            <div class="video-card" onclick="playMindfulnessVideo('{% static 'img/rr.mp4' %}', 'Breathing Awareness')">
+                                <div class="video-thumbnail">
+                                    <img src="{% static 'img/b1 (10).jpg' %}" alt="Breathing Awareness">
+                                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="video-info">
+                                    <h4>Breathing Awareness</h4>
+                                    <p>5 min • Quick stress relief</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Video Player Container -->
+                        <div id="mindfulness-video-player" class="mindfulness-video-container">
+                            <h3 id="mindfulness-video-title" style="text-align: center; margin-bottom: 15px;"></h3>
+                            <video id="mindfulness-player" controls style="width: 100%;">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="back-button" onclick="backToMindfulnessGallery()">
+                                <i class="fas fa-arrow-left"></i> Back to Videos
+                            </div>
+                        </div>
+                        
+                        <h3>Mindfulness Techniques for Anxiety</h3>
+                        <p>These specific mindfulness exercises can help manage anxiety symptoms:</p>
+                        <ul>
+                            <li><strong>5-4-3-2-1 Grounding Technique:</strong> 
+                                <ol>
+                                    <li>Name 5 things you can see</li>
+                                    <li>4 things you can touch</li>
+                                    <li>3 things you can hear</li>
+                                    <li>2 things you can smell</li>
+                                    <li>1 thing you can taste</li>
+                                </ol>
+                            </li>
+                            <li><strong>Box Breathing:</strong> Inhale for 4 counts, hold for 4 counts, exhale for 4 counts, hold for 4 counts</li>
+                            <li><strong>Anxiety Surfing:</strong> Observe anxious thoughts like waves - they rise, peak, and fall</li>
+                            <li><strong>Progressive Muscle Relaxation:</strong> Tense and release muscle groups from toes to head</li>
+                            <li><strong>Thought Labeling:</strong> Notice thoughts as "just thoughts" without judgment</li>
+                        </ul>
+                        
+                        <h3>Simple Mindfulness Exercises</h3>
+                        <ul>
+                            <li><strong>Mindful Breathing:</strong> Focus all your attention on your breath as you inhale and exhale.</li>
+                            <li><strong>Body Scan:</strong> Bring attention to different parts of your body, noticing any sensations.</li>
+                            <li><strong>Mindful Observation:</strong> Pick a natural object and focus on watching it for a few minutes.</li>
+                            <li><strong>Mindful Listening:</strong> Listen to sounds without judgment, simply observing them.</li>
+                            <li><strong>Mindful Eating:</strong> Eat slowly, savoring each bite and noticing textures and flavors.</li>
+                        </ul>
+                        
+                        <h3>Daily Mindfulness Tips</h3>
+                        <div class="self-care-tip">
+                            <ul>
+                                <li>Start with just 5 minutes a day and gradually increase</li>
+                                <li>Practice at the same time each day to build a habit</li>
+                                <li>Use reminders like phone alerts or sticky notes</li>
+                                <li>Be patient - benefits accumulate over time</li>
+                                <li>Try different techniques to find what works for you</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="category">
+                        <h3><i class="fas fa-book"></i> Articles & Guides</h3>
+                        <div class="resource-list">
+                            <a href="#" class="resource-item" onclick="showContent('anxiety-content'); return false;">
+                                <h4>Understanding Anxiety</h4>
+                                <p>A comprehensive guide to recognizing and managing anxiety</p>
+                            </a>
+                            <a href="#" class="resource-item" onclick="showContent('mindfulness-content'); return false;">
+                                <h4>Mindfulness Techniques</h4>
+                                <p>Simple practices for daily stress reduction</p>
+                            </a>
+                            <a href="#" class="resource-item" onclick="showContent('depression-content'); return false;">
+                                <h4>Understanding Depression</h4>
+                                <p>A comprehensive guide to recognizing and managing depression</p>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="category">
+                        <h3><i class="fas fa-headphones"></i> Audio Resources</h3>
+                        <div class="resource-list">
+                            <a href="#" class="resource-item" onclick="showContent('guided-meditation-content'); return false;">
+                                <h4>Guided Meditations</h4>
+                                <p>10-20 minute sessions for relaxation</p>
+                            </a>
+                            <a href="#" class="resource-item" onclick="showContent('sleep-stories-content'); return false;">
+                                <h4>Sleep Stories</h4>
+                                <p>Calming narratives to help you fall asleep</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Guided Meditation Content -->
+                    <div id="guided-meditation-content" class="audio-content">
+                        <span class="close-btn" onclick="closeContent('guided-meditation-content')">&times;</span>
+                        <h2>Guided Meditations</h2>
+                        <p>Listen to these guided meditation sessions to help relax your mind and body.</p>
+                        
+                        <div class="audio-item">
+                            <div class="audio-icon">
+                                <i class="fas fa-headphones"></i>
+                            </div>
+                            <div class="audio-info">
+                                <h4>Morning Mindfulness</h4>
+                                <p>10 min • Start your day with clarity</p>
+                                <audio controls>
+                                    <source src="{% static 'audio/morning-meditation.mp3' %}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                        
+                        <div class="audio-item">
+                            <div class="audio-icon">
+                                <i class="fas fa-headphones"></i>
+                            </div>
+                            <div class="audio-info">
+                                <h4>Stress Relief</h4>
+                                <p>15 min • Release tension and anxiety</p>
+                                <audio controls>
+                                    <source src="{% static 'audio/stress-relief.mp3' %}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                        
+                        <div class="audio-item">
+                            <div class="audio-icon">
+                                <i class="fas fa-headphones"></i>
+                            </div>
+                            <div class="audio-info">
+                                <h4>Body Relaxation</h4>
+                                <p>20 min • Full body scan meditation</p>
+                                <audio controls>
+                                    <source src="{% static 'audio/body-relaxation.mp3' %}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sleep Stories Content -->
+                    <div id="sleep-stories-content" class="audio-content">
+                        <span class="close-btn" onclick="closeContent('sleep-stories-content')">&times;</span>
+                        <h2>Sleep Stories</h2>
+                        <p>Let these calming narratives guide you into a peaceful sleep.</p>
+                        
+                        <div class="audio-item">
+                            <div class="audio-icon">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <div class="audio-info">
+                                <h4>Beach Sunset</h4>
+                                <p>25 min • Gentle waves and warm sand</p>
+                                <audio controls>
+                                    <source src="{% static 'audio/beach-sunset.mp3' %}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                        
+                        <div class="audio-item">
+                            <div class="audio-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <div class="audio-info">
+                                <h4>Mountain Cabin</h4>
+                                <p>30 min • Cozy fireplace in a quiet forest</p>
+                                <audio controls>
+                                    <source src="{% static 'audio/mountain-cabin.mp3' %}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                        
+                        <div class="audio-item">
+                            <div class="audio-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <div class="audio-info">
+                                <h4>Floating Clouds</h4>
+                                <p>20 min • Drifting through peaceful skies</p>
+                                <audio controls>
+                                    <source src="{% static 'audio/floating-clouds.mp3' %}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="category">
+                        <h3><i class="fas fa-mobile-alt"></i> Recommended Apps</h3>
+                        <div class="resource-list">
+                            <a href="#" class="resource-item">
+                                <h4>SereneMind Companion</h4>
+                                <p>Our official app with mood tracking and exercises</p>
+                            </a>
+                            <a href="#" class="resource-item">
+                                <h4>Breathing Space</h4>
+                                <p>Breathing exercises for anxiety management</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+                <div class="newsletter-signup">
+                    <h3>Get Monthly Resources</h3>
+                    <p>Subscribe to receive new articles, tips, and recommendations</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                    </form>
+                </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Serene<span>Mind</span></div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Crisis Hotlines</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <p>&copy; 2023 SereneMind. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js'%}"></script>
+    <script>
+        // Function to show specific content
+        function showContent(contentId) {
+            // Hide all expanded content first
+            document.querySelectorAll('.expanded-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.querySelectorAll('.audio-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Show the selected content
+            document.getElementById(contentId).style.display = 'block';
+            
+            // Scroll to the content
+            document.getElementById(contentId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Function to close content
+        function closeContent(contentId) {
+            document.getElementById(contentId).style.display = 'none';
+        }
+
+        function playMindfulnessVideo(videoPath, title) {
+            // Hide gallery
+            document.getElementById('mindfulness-gallery').style.display = 'none';
+            
+            // Show player and set video
+            const playerContainer = document.getElementById('mindfulness-video-player');
+            const videoPlayer = document.getElementById('mindfulness-player');
+            const videoTitle = document.getElementById('mindfulness-video-title');
+            
+            videoPlayer.src = videoPath;
+            videoTitle.textContent = title;
+            playerContainer.style.display = 'block';
+            
+            // Scroll to player
+            playerContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Load and play video
+            videoPlayer.load();
+            videoPlayer.play();
+        }
+        
+        function backToMindfulnessGallery() {
+            const videoPlayer = document.getElementById('mindfulness-player');
+            
+            // Pause and reset video
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+            
+            // Hide player and show gallery
+            document.getElementById('mindfulness-video-player').style.display = 'none';
+            document.getElementById('mindfulness-gallery').style.display = 'grid';
+            
+            // Scroll back to gallery
+            document.getElementById('mindfulness-gallery').scrollIntoView({ behavior: 'smooth' });
+        }
+
+    </script>
+</body>
+</html>

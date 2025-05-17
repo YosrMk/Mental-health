@@ -1,0 +1,63 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+</head>
+<body>
+        
+          <div class="containerd">
+        <div class="contact-form" style="width:600px;">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form  method="POST"   autocomplete=off>
+           
+            {% csrf_token %}
+            <h3 class="title" style="margin-bottom:30px;">Register </h3>
+            <div >
+              {% comment %} <input type="text" name="name" placeholder="name" class="input" /> {% endcomment %}
+              {% comment %} <label for="">Name</label> {% endcomment %}
+              <span  class="input" >Name {{form.username}}</span>
+            </div><br>
+           
+            <div>
+              {% comment %} <input type="email" name="email" placeholder="email" class="input" /> {% endcomment %}
+              {% comment %} <label for="">Email</label> {% endcomment %}
+              <span  class="input">Email {{form.email}}</span>  
+            </div><br>
+             <div>
+              {% comment %} <input type="password"  name="password" placeholder="Password" class="input" /> {% endcomment %}
+              {% comment %} <label for="">Password</label> {% endcomment %}
+              <span  class="input">Password  {{form.password1}}</span>
+            </div><br>
+              <div>
+              {% comment %} <input type="password"  name="password" placeholder="Re-type Password" class="input" /> {% endcomment %}
+              {% comment %} <label for="">Confirm Password</label> {% endcomment %}
+              <span  class="input">Confirm Password {{form.password2}}</span>
+            </div><br>
+
+            <!-- <script src="https://www.google.com/recaptcha/api.js"></script>
+            <div class="g-recaptcha" data-sitekey="6LfZ8CUqAAAAAOW9VfZ9hcg6FuC6IUfcJv0calWX" ></div>
+            <br> -->
+
+            <input type="submit" value="Send" class="btn"  />
+            <br>
+                  
+                    {{form.errors}}
+                    {% for item in messages %}
+                      <h3>{{item}}</h3>
+                    {% endfor %}
+                  
+                  <br>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+</div>

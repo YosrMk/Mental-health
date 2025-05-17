@@ -1,0 +1,62 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+</head>
+<body>
+      <div class="containerd">
+        <div class="contact-form" style="width:600px;">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form  method="POST"   autocomplete=off>
+           
+            {% csrf_token %}
+            <h3 class="title">Login </h3>
+            <div class="input-container">
+              <input type="text" name="username" placeholder="your name" class="input" />
+              {% comment %} <label for="">Username</label> {% endcomment %}
+              {% comment %} <span>First Name</span> {% endcomment %}
+            </div>
+           
+            {% comment %} <div class="input-container">
+              <input type="text" name="name"  required class="input" />
+              <label for="">Last Name</label>
+              <span>Last Name</span>
+            </div> {% endcomment %}
+             <div class="input-container">
+              <input type="password"  name="password" placeholder="your own letters" class="input" />
+              {% comment %} <label for="">Password</label> {% endcomment %}
+              {% comment %} <span>Password</span> {% endcomment %}
+            </div>
+
+            <!-- <script src="https://www.google.com/recaptcha/api.js"></script>
+            <div class="g-recaptcha" data-sitekey="6LfZ8CUqAAAAAOW9VfZ9hcg6FuC6IUfcJv0calWX" ></div>
+            <br> -->
+
+            <input type="submit" value="Send" class="btn"  />
+            <br><br>
+            <div class="d-flex align-items-center justify-content pb-4">
+              <p class="mb-0 me-1">Don't have an account?</p>
+              <button type="button" class="btn btn-outline">
+                <h6><a href="{% url 'register' %}">Create new</a></h6>
+              </button>
+            </div>
+            <br><br>
+            {% for item in messages %}
+              <span>{{item}}</span>
+            {% endfor %}
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+</div>
+  
